@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b6b53" />
+  <title>BatteryWise | Smart EV Battery Recycling Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">♻</span><span>Battery<span class="brand-light">Wise</span><small>Recycle Today, Protect Tomorrow</small></span></a>
+    <nav><a href="#dashboard">Dashboard</a><a href="#register">Register Battery</a><a href="#records">Records</a><a href="#about">About</a></nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">SMART • SUSTAINABLE • RESPONSIBLE</span>
+        <h1>Give batteries a <span>better next life.</span></h1>
+        <p>Register battery records, follow their recycling journey and discover how responsible battery management can reduce pressure on newly mined materials.</p>
+        <div class="hero-actions"><a class="btn primary" href="#register">＋ Register a battery</a><a class="btn secondary" href="#how-it-works">How it works</a></div>
+      </div>
+      <div class="hero-art" aria-label="Battery recycling illustration">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="battery-visual"><div class="battery-cap"></div><div class="battery-body"><span>＋</span><div class="battery-level"></div><span>−</span></div></div>
+        <div class="leaf leaf-one">❧</div><div class="leaf leaf-two">❧</div>
+        <div class="floating-tag">♻ Reuse • Recover • Recycle</div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="section">
+      <div class="section-heading"><div><span class="eyebrow">OVERVIEW</span><h2>Your recycling dashboard</h2></div><button id="exportBtn" class="btn secondary">↓ Export CSV</button></div>
+      <div class="stats-grid">
+        <article class="stat-card"><span class="stat-icon green">▣</span><p>Total registered</p><strong id="totalCount">0</strong><small>Battery records</small></article>
+        <article class="stat-card"><span class="stat-icon blue">↗</span><p>Sent to recycler</p><strong id="sentCount">0</strong><small>Awaiting / in process</small></article>
+        <article class="stat-card"><span class="stat-icon purple">✓</span><p>Completed</p><strong id="doneCount">0</strong><small>Marked recycled</small></article>
+        <article class="stat-card"><span class="stat-icon orange">◉</span><p>Battery categories</p><strong id="categoryCount">0</strong><small>Types represented</small></article>
+      </div>
+      <div class="dashboard-bottom">
+        <article class="panel"><div class="panel-title"><h3>Battery categories</h3><span class="muted">Registered records</span></div><div id="categoryBreakdown" class="breakdown"><p class="empty">No battery records yet.</p></div></article>
+        <article class="panel impact-panel"><div class="impact-symbol">🌱</div><h3>Small steps, meaningful impact</h3><p>Battery reuse and recycling can recover valuable materials and reduce demand for some newly mined resources.</p><span class="impact-note">A more circular battery lifecycle starts with awareness.</span></article>
+      </div>
+    </section>
+
+    <section id="register" class="section">
+      <div class="section-heading"><div><span class="eyebrow">GET STARTED</span><h2>Register a battery</h2><p class="section-subtitle">Add a sample or demonstration record to your BatteryWise dashboard.</p></div></div>
+      <div class="form-layout">
+        <form id="batteryForm" class="panel form-panel">
+          <div class="form-grid">
+            <label>Battery category<select id="batteryType" required><option value="">Choose category</option><option>Lithium-ion EV</option><option>Lead-acid</option><option>Nickel-metal hydride</option><option>Alkaline</option><option>Other / Unknown</option></select></label>
+            <label>Battery / device name<input id="batteryName" maxlength="60" placeholder="e.g. Demo EV battery" required /></label>
+            <label>Owner / organisation<input id="ownerName" maxlength="60" placeholder="e.g. Project team" required /></label>
+            <label>Condition<select id="condition" required><option value="">Choose condition</option><option>Used - reusable assessment needed</option><option>End-of-life</option><option>Unknown</option></select></label>
+            <label class="full">Notes <span class="muted">(optional)</span><textarea id="notes" maxlength="250" rows="3" placeholder="Add brief notes..."></textarea></label>
+          </div>
+          <div class="form-foot"><p class="muted">This demo stores records in this browser only.</p><button class="btn primary" type="submit">Create battery passport →</button></div>
+          <p id="formMessage" class="form-message" role="status"></p>
+        </form>
+        <aside class="panel passport-info"><div class="passport-icon">▤</div><h3>Digital Battery Passport</h3><p>Each registration receives a unique demo ID. Use it to find and update the record in this app.</p><div class="passport-example">BW-2026-XXXXXX</div><small>Demo identification only — not an official certification.</small></aside>
+      </div>
+    </section>
+
+    <section id="records" class="section">
+      <div class="section-heading"><div><span class="eyebrow">BATTERY LIFECYCLE</span><h2>Registered records</h2></div></div>
+      <div class="record-tools"><input id="searchInput" type="search" placeholder="Search ID, battery or owner..." aria-label="Search records" /><select id="statusFilter" aria-label="Filter by status"><option value="all">All statuses</option><option value="Registered">Registered</option><option value="Sent to authorised recycler">Sent to recycler</option><option value="Recycled / Completed">Recycled / Completed</option></select></div>
+      <div class="table-wrap"><table><thead><tr><th>Passport ID</th><th>Battery</th><th>Category</th><th>Status</th><th>Update status</th><th></th></tr></thead><tbody id="recordsBody"><tr><td colspan="6" class="empty">No records found. Register your first battery above.</td></tr></tbody></table></div>
+    </section>
+
+    <section id="how-it-works" class="section how-section">
+      <div class="section-heading"><div><span class="eyebrow">SIMPLE WORKFLOW</span><h2>How BatteryWise works</h2></div></div>
+      <div class="steps">
+        <div class="step"><b>01</b><span>▣</span><h3>Select</h3><p>Choose the battery category.</p></div>
+        <div class="step"><b>02</b><span>＋</span><h3>Register</h3><p>Enter basic battery details.</p></div>
+        <div class="step"><b>03</b><span>▤</span><h3>Identify</h3><p>Get a unique demo passport ID.</p></div>
+        <div class="step"><b>04</b><span>↗</span><h3>Track</h3><p>Update its recycling status.</p></div>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div><span class="eyebrow">OUR PURPOSE</span><h2>Recycle more. Waste less.</h2></div>
+      <p>BatteryWise is an educational digital prototype. It demonstrates battery registration and manual status tracking to encourage responsible collection, reuse assessment and recycling. Recycling can reduce demand for some virgin materials, but it does not eliminate the need for mining.</p>
+    </section>
+    <footer><strong>BatteryWise</strong><span>Educational prototype • Data stays in this browser</span><span>Recycle Today, Protect Tomorrow.</span></footer>
+  </main>
+
+  <div id="modal" class="modal" hidden><div class="modal-card"><button id="closeModal" class="modal-close" aria-label="Close">×</button><span class="eyebrow">BATTERY PASSPORT CREATED</span><h2>Your record is registered!</h2><p class="muted">Save this demo ID to find the record later.</p><div id="newPassportId" class="passport-id"></div><button id="copyId" class="btn primary">Copy passport ID</button></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
